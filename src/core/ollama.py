@@ -9,7 +9,7 @@ OLLAMA_HOST_URL = os.getenv("OLLAMA_HOST_URL")
 if not OLLAMA_HOST_URL:
     raise EnvironmentError("BASE_URL environment variable is not set.")
 
-class OllamaEndpoints:
+class OllamaChatInterface:
     def __init__(self):
         self.base_url = OLLAMA_HOST_URL
         self.model_name = "llama3.1:8b"

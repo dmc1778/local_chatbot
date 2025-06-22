@@ -1,7 +1,7 @@
-from core.ollama import OllamaFunctionalities
+from core.ollama import OllamaChatInterface
 
 def run_examples():
-    ollama_connector = OllamaFunctionalities()
+    ollama_connector = OllamaChatInterface()
 
     print("Available models:")
     models = ollama_connector.list_models()
