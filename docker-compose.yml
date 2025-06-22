@@ -1,0 +1,44 @@
+services:
+  ollama:
+    build: 
+      context: ./docker/ollama
+      dockerfile: Dockerfile
+    container_name: "ollama_cont"
+    entrypoint: /ollama_entrypoint.sh
+    restart: unless-stopped
+    ports:
+      - "${OLLAMA_PORT}:${OLLAMA_PORT}"
+    volumes:
+      - ollama_models:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    networks:
+      - app_networks
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: ./docker/streamlit/Dockerfile
+    container_name: "streamlit_cont"
+    entrypoint: ./docker/streamlit/streamlit_entrypoint.sh
+    restart: unless-stopped
+    ports:
+      - "${STREAMLIT_PORT}:${STREAMLIT_PORT}"
+    volumes:
+      - ./:/app
+    depends_on:
+      - ollama
+    networks:
+      - app_networks
+
+networks:
+  app_networks:
+    name: app_networks
+
+volumes:
+  ollama_models: {}

@@ -1,0 +1,9 @@
+# virtual environment
+.venv/
+
+# pycache
+__pycache__/ 
+
+# Files
+MEDIUM_ARTICLE.md
+README.md
