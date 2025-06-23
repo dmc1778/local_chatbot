@@ -7,7 +7,7 @@ load_dotenv()
 OLLAMA_HOST_URL = os.getenv("OLLAMA_HOST_URL")
 
 if not OLLAMA_HOST_URL:
-    raise EnvironmentError("BASE_URL environment variable is not set.")
+    raise EnvironmentError("OLLAMA_HOST_URL environment variable is not set.")
 
 class OllamaChatInterface:
     def __init__(self):
