@@ -24,10 +24,5 @@ def run_examples():
         print(chunk, end="", flush=True)
     print()
 
-    pull_stream = ollama_connector.pull_model("gemma:2b")
-    for chunk in pull_stream:
-        print(chunk.get("status"))
-    print("-" * 20)
-
 if __name__ == "__main__":
     run_examples() 
