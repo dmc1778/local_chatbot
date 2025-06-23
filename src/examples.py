@@ -24,20 +24,10 @@ def run_examples():
         print(chunk, end="", flush=True)
     print()
 
-    print("Pulling model 'gemma:2b':")
     pull_stream = ollama_connector.pull_model("gemma:2b")
     for chunk in pull_stream:
         print(chunk.get("status"))
     print("-" * 20)
-
-    print("Deleting model 'gemma:2b':")
-    delete_status = ollama_connector.delete_model("gemma:2b")
-    if delete_status == 200:
-        print("Model 'gemma:2b' deleted successfully.")
-    else:
-        print(f"Error deleting model: {delete_status}")
-    print("-" * 20)
-
 
 if __name__ == "__main__":
     run_examples() 
